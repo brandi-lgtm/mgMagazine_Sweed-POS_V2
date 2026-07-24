@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>mg Magazine — Partnership Proposal</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,600;0,9..144,700;0,9..144,900;1,9..144,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --black:#0a0a0a;
+    --white:#ffffff;
+    --gray-700:#4a4a4a;
+    --gray-500:#7a7a7a;
+    --gray-300:#d8d8d8;
+    --gray-100:#f2f2f2;
+    --page-w:8.5in;
+    --page-h:11in;
+  }
+  *{ box-sizing:border-box; }
+  html,body{ margin:0; padding:0; }
+  body{
+    font-family:'Inter', sans-serif;
+    color:var(--black);
+    background:#e7e7e7;
+    -webkit-font-smoothing:antialiased;
+  }
+  .sheet-stack{
+    padding:28px 0 40px;
+  }
+  .page{
+    margin:0 auto 28px;
+  }
+  .page{
+    position:relative;
+    width:var(--page-w);
+    min-height:var(--page-h);
+    background:var(--white);
+    box-shadow:0 8px 30px rgba(0,0,0,0.18);
+    flex-shrink:0;
+    page-break-after:always;
+    break-after:page;
+    page-break-inside:avoid;
+  }
+  .sheet-stack .page:last-child{ page-break-after:auto; break-after:auto; }
+  .pad{
+    padding:0.62in 0.62in 0.9in;
+    min-height:calc(var(--page-h) - 0.9in);
+  }
+
+  .eyebrow{
+    font-family:'Inter', sans-serif;
+    font-size:10.5px;
+    font-weight:700;
+    letter-spacing:0.16em;
+    text-transform:uppercase;
+  }
+  .eyebrow.on-dark{ color:var(--white); }
+  .eyebrow.on-light{ color:var(--gray-700); }
+
+  h1.display{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    line-height:1.02;
+    letter-spacing:-0.01em;
+    margin:0;
+  }
+  h2.section-head{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-size:27px;
+    line-height:1.1;
+    margin:0 0 10px;
+    letter-spacing:-0.01em;
+  }
+  h3.sub-head{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-size:15px;
+    margin:0 0 8px;
+  }
+
+  p{ margin:0 0 10px; }
+  .body-copy{
+    font-size:11.3px;
+    line-height:1.62;
+    color:var(--black);
+  }
+  .body-copy.muted{ color:var(--gray-700); }
+
+  .rule{
+    border:none;
+    border-top:1.4px solid var(--black);
+    margin:14px 0;
+  }
+  .rule.thin{ border-top:1px solid var(--gray-300); }
+
+  /* ===== COVER MASTHEAD ===== */
+  .masthead{
+    background:var(--black);
+    color:var(--white);
+    margin:-0.62in -0.62in 0;
+    padding:0.5in 0.62in 0.46in;
+  }
+  .masthead-top{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    margin-bottom:0.34in;
+  }
+  .logo-mark{
+    width:40px;
+    height:40px;
+    border-radius:50%;
+    display:block;
+  }
+  .issue-tag{
+    font-size:10.5px;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color:var(--gray-300);
+    text-align:right;
+  }
+  h1.cover-title{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-size:44px;
+    line-height:1.04;
+    color:var(--white);
+    margin:0.16in 0 0.14in;
+    letter-spacing:-0.015em;
+  }
+  .deck{
+    font-family:'Fraunces', serif;
+    font-style:italic;
+    font-weight:500;
+    font-size:15.5px;
+    line-height:1.5;
+    color:var(--gray-300);
+    max-width:5.6in;
+    margin:0 0 0.22in;
+  }
+  .byline{
+    font-size:10.5px;
+    letter-spacing:0.04em;
+    color:var(--gray-300);
+    text-transform:uppercase;
+  }
+
+  /* drop cap lede */
+  .lede{ margin-top:0.3in; }
+  .lede p:first-of-type::first-letter{
+    font-family:'Fraunces', serif;
+    font-weight:700;
+    font-size:58px;
+    float:left;
+    line-height:0.78;
+    padding-right:8px;
+    padding-top:4px;
+  }
+
+  /* teaser strip on cover */
+  .teasers{
+    display:flex;
+    gap:0.3in;
+    margin-top:0.34in;
+    padding-top:0.24in;
+    border-top:1.4px solid var(--black);
+  }
+  .teaser{ flex:1; }
+  .teaser .num{
+    font-family:'Fraunces', serif;
+    font-size:11px;
+    color:var(--gray-500);
+    margin-bottom:4px;
+  }
+  .teaser h4{
+    font-family:'Fraunces', serif;
+    font-size:14.5px;
+    font-weight:600;
+    margin:0 0 5px;
+  }
+  .teaser p{
+    font-size:10.3px;
+    line-height:1.5;
+    color:var(--gray-700);
+    margin:0;
+  }
+
+  /* ===== FEATURE PAGE (page 2) ===== */
+  .feature-grid{
+    display:flex;
+    gap:0.46in;
+    margin-top:0.06in;
+    flex:1;
+  }
+  .col-side{ width:2.05in; flex-shrink:0; }
+  .col-main{ flex:1; }
+
+  .sidebar-box{
+    border-top:2.2px solid var(--black);
+    padding-top:10px;
+  }
+  ul.feature-list{
+    list-style:none;
+    margin:0 0 16px;
+    padding:0;
+  }
+  ul.feature-list li{
+    font-size:10.6px;
+    line-height:1.5;
+    padding:9px 0;
+    border-bottom:1px solid var(--gray-300);
+  }
+  ul.feature-list li:first-child{ padding-top:0; }
+
+  .stat-box{
+    background:var(--black);
+    color:var(--white);
+    padding:14px 16px;
+    margin-top:6px;
+  }
+  .stat-box .stat-num{
+    font-family:'Fraunces', serif;
+    font-size:26px;
+    font-weight:600;
+    line-height:1;
+  }
+  .stat-box .stat-label{
+    font-size:9.5px;
+    letter-spacing:0.06em;
+    text-transform:uppercase;
+    color:var(--gray-300);
+    margin-top:4px;
+  }
+
+  .case-box{
+    border:1.4px solid var(--black);
+    padding:14px 16px;
+    margin-top:14px;
+  }
+  .case-box .kicker{
+    font-size:9.5px;
+    font-weight:700;
+    letter-spacing:0.1em;
+    text-transform:uppercase;
+    color:var(--gray-700);
+    margin-bottom:6px;
+  }
+  .case-box a{
+    color:var(--black);
+    font-size:10.6px;
+    word-break:break-all;
+  }
+
+  /* ===== TABLE (page 3) ===== */
+  table.invest{
+    width:100%;
+    border-collapse:collapse;
+    margin:8px 0 4px;
+  }
+  table.invest thead th{
+    background:var(--black);
+    color:var(--white);
+    font-size:10px;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    text-align:left;
+    padding:9px 12px;
+    font-weight:600;
+  }
+  table.invest thead th.num{ text-align:right; }
+  table.invest tbody td{
+    padding:11px 12px;
+    font-size:11px;
+    border-bottom:1px solid var(--gray-300);
+    vertical-align:top;
+  }
+  table.invest tbody tr:nth-child(even){ background:var(--gray-100); }
+  table.invest td.item-name{ font-weight:600; }
+  table.invest td.item-detail{ color:var(--gray-700); font-size:10px; margin-top:2px; }
+  table.invest td.num{
+    text-align:right;
+    font-weight:700;
+    white-space:nowrap;
+  }
+  table.invest tfoot td{
+    padding:12px;
+    font-size:11.5px;
+    font-weight:700;
+    border-top:2.2px solid var(--black);
+  }
+  table.invest tfoot td.num{ text-align:right; }
+
+  ol.next-steps{
+    margin:8px 0 0;
+    padding:0 0 0 1.1em;
+  }
+  ol.next-steps li{
+    font-size:11px;
+    line-height:1.55;
+    margin-bottom:7px;
+  }
+
+  .footer{
+    position:absolute;
+    left:0.62in;
+    right:0.62in;
+    bottom:0.4in;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding-top:8px;
+    border-top:1px solid var(--gray-300);
+    font-size:9px;
+    letter-spacing:0.05em;
+    text-transform:uppercase;
+    color:var(--gray-500);
+  }
+
+  .signoff{
+    margin-top:0.22in;
+  }
+  .signoff p{ font-size:11.3px; line-height:1.6; }
+
+  @media print{
+    body{ background:var(--white); }
+    .sheet-stack{ padding:0; gap:0; }
+    .page{ box-shadow:none; margin:0; }
+    @page{ size:8.5in 11in; margin:0; }
+  }
+  .placement-grid{
+    display:flex;
+    gap:0.42in;
+    margin-top:0.4in;
+  }
+  .placement-card{
+    flex:1;
+    border-top:2.2px solid var(--black);
+    padding-top:12px;
+  }
+  .placement-card h4{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-size:16.5px;
+    margin:0 0 8px;
+  }
+  .placement-card p{
+    font-size:10.8px;
+    line-height:1.55;
+    color:var(--gray-700);
+    margin:0 0 14px;
+  }
+  .metric-row{
+    display:flex;
+  }
+  .metric{
+    margin-right:24px;
+  }
+  .metric .value{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-size:22px;
+    line-height:1;
+  }
+  .metric .label{
+    font-size:9px;
+    letter-spacing:0.05em;
+    text-transform:uppercase;
+    color:var(--gray-500);
+    margin-top:4px;
+  }
+</style>
+</head>
+<body>
+<div class="sheet-stack">
+
+  <!-- PAGE 1 : COVER + EXEC SUMMARY -->
+  <section class="page">
+    <div class="pad">
+      <div class="masthead">
+        <div class="masthead-top">
+          <img class="logo-mark" src="data:image/png;base64,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" alt="mg Magazine">
+          <div class="issue-tag">Partnership Proposal<br>Prepared for Sweed&nbsp;POS</div>
+        </div>
+        <h1 class="cover-title">AI Discoverability &amp;<br>Audience Growth</h1>
+        <p class="deck">A three-month editorial trial built to help AI models and search engines find, understand, and cite Sweed POS, paired with a media plan for its upcoming webinar series.</p>
+        <p class="byline">mg Magazine &nbsp;·&nbsp; July 23, 2026</p>
+      </div>
+
+      <div class="lede body-copy">
+        <p>Buyers no longer start with a search engine alone. They ask AI models directly, and those models answer from whatever content they can find, understand, and trust. mg Magazine is proposing a three month trial of our AI Discoverability Service, an AEO and GEO optimized editorial program built to help Sweed POS show up clearly and accurately wherever cannabis retailers are searching for point of sale technology.</p>
+        <p class="muted">Alongside this, we've outlined a media plan to support Sweed POS's upcoming webinar series, built around the placements that consistently perform best across our client base. Both programs are detailed on the pages that follow.</p>
+      </div>
+
+      <hr class="rule">
+
+      <div class="eyebrow on-light">Program One</div>
+      <h2 class="section-head">Built to Be Found</h2>
+
+      <div class="feature-grid">
+        <div class="col-side sidebar-box">
+          <h3 class="sub-head">What's Included</h3>
+          <ul class="feature-list">
+            <li>A dedicated company profile, written and structured by mg Magazine's editorial team</li>
+            <li>Original visual assets, formatted for web and social use</li>
+            <li>Direct links to Sweed POS's social media handles</li>
+            <li>A do follow link back to sweedpos.com</li>
+            <li>Ongoing structural optimization as AI models and search algorithms evolve</li>
+          </ul>
+          <div class="stat-box">
+            <div class="stat-num">$2,945</div>
+            <div class="stat-label">Annual rate after the three month trial</div>
+          </div>
+        </div>
+
+        <div class="col-main body-copy">
+          <p>Answer Engine Optimization and Generative Engine Optimization describe the practice of structuring content so AI systems such as ChatGPT, Gemini, and Perplexity can find it, parse it correctly, and cite it in response to a user's question. This program was built to help those models clearly identify Sweed POS, and to strengthen the company's presence when someone runs a Google or AI search for point of sale and retail technology in the cannabis industry.</p>
+          <p class="muted">Traditional SEO lift is a natural byproduct of this work, not the goal of it. The content is written first for how AI models parse and cite information, with organic search benefit following from that same structure.</p>
+          <p>The first three months run as a trial period so Sweed POS can evaluate results before committing to the full program. Following the trial, the rate is $2,945 per year, covering continuous content development and optimization as AI models change.</p>
+
+          <div class="case-box">
+            <div class="kicker">Case in Point</div>
+            <p class="body-copy" style="margin-bottom:6px;">mg Magazine recently published this same format for Cova Software, a competing point of sale provider, profiling its product suite, leadership, and markets served in a structure built for AI citation.</p>
+            <a href="https://mgmagazine.com/industry-directory/companies/cova-software-company-spotlight/">mgmagazine.com/industry-directory/companies/cova-software-company-spotlight</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="footer">
+      <span>mg Magazine — Partnership Proposal</span>
+      <span>01 / 02</span>
+    </div>
+  </section>
+
+  <!-- PAGE 2 : WEBINAR PROMOTION + INVESTMENT + NEXT STEPS -->
+  <section class="page">
+    <div class="pad">
+      <div class="eyebrow on-light">Program Two</div>
+      <h2 class="section-head">Amplifying the Webinar Series</h2>
+      <div class="body-copy">
+        <p>Sweed POS is planning two webinars per quarter. To drive registration, mg Magazine recommends a dedicated e-newsletter, with three contextual ad placements and a partner content section pointed directly at the registration page, paired with a native lead generation ad running the full campaign window. Bundling the two placements unlocks a frequency rate on the newsletter.</p>
+      </div>
+
+      <div class="placement-grid">
+        <div class="placement-card">
+          <h4>E-Newsletter Placement</h4>
+          <p>Three contextual ad placements plus a partner content section directing readers to the webinar registration page.</p>
+          <div class="metric-row">
+            <div class="metric">
+              <div class="value">18,000+</div>
+              <div class="label">Qualified Retail Subscribers</div>
+            </div>
+            <div class="metric">
+              <div class="value">3 + 1</div>
+              <div class="label">Contextual Placements + Partner Content</div>
+            </div>
+          </div>
+        </div>
+        <div class="placement-card">
+          <h4>Native Lead Generation Ad</h4>
+          <p>Runs the full campaign duration, linking directly to a dedicated registration landing page.</p>
+          <div class="metric-row">
+            <div class="metric">
+              <div class="value">Full Run</div>
+              <div class="label">Campaign Duration</div>
+            </div>
+            <div class="metric">
+              <div class="value">Direct</div>
+              <div class="label">Landing Page Link</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <p class="body-copy" style="margin-top:12px; font-size:10.5px;"><strong>Availability:</strong> <span style="color:var(--gray-700);">Three newsletter placements are open in October, offered on a first-confirmed basis.</span></p>
+
+      <hr class="rule" style="margin:18px 0;">
+
+      <h2 class="section-head" style="font-size:19px; margin-bottom:6px;">Investment Summary</h2>
+      <table class="invest">
+        <thead>
+          <tr>
+            <th>Placement</th>
+            <th class="num">Cost</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <div class="item-name">AI Discoverability Service</div>
+              <div class="item-detail">3 month trial, then $2,945 billed annually</div>
+            </td>
+            <td class="num">Trial: $0</td>
+          </tr>
+          <tr>
+            <td>
+              <div class="item-name">E-Newsletter Placement</div>
+              <div class="item-detail">Three contextual ad placements and a partner content section · deployed to 18,000+ qualified retail subscribers · $1,050 per newsletter standalone</div>
+            </td>
+            <td class="num">$850 <span style="font-weight:400; color:var(--gray-700); font-size:9.5px;">per&nbsp;newsletter,&nbsp;bundled</span></td>
+          </tr>
+          <tr>
+            <td>
+              <div class="item-name">Native Lead Generation Ad</div>
+              <div class="item-detail">Runs full campaign duration to registration landing page</div>
+            </td>
+            <td class="num">$2,500</td>
+          </tr>
+        </tbody>
+      </table>
+      <p class="body-copy muted" style="font-size:10px; margin-top:2px;">The e-newsletter frequency rate of $850 applies when bundled with the native lead generation ad; the standalone rate is $1,050 per newsletter. The AI Discoverability Service runs at no cost through the three month trial and renews at $2,945 annually thereafter.</p>
+
+      <hr class="rule" style="margin:18px 0;">
+
+      <div style="display:flex; gap:0.5in;">
+        <div style="flex:1;">
+          <h2 class="section-head" style="font-size:16px; margin-bottom:6px;">Next Steps</h2>
+          <ol class="next-steps">
+            <li>Confirm trial start date for the AI Discoverability Service</li>
+            <li>Finalize webinar dates and the registration landing page URL</li>
+            <li>mg Magazine's editorial team begins content development</li>
+          </ol>
+        </div>
+        <div style="flex:1;">
+          <div class="signoff" style="margin-top:0;">
+            <p><strong>We look forward to partnering with Sweed POS on this program.</strong> Please reach out with any questions or to confirm next steps.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="footer">
+      <span>mg Magazine — mediakit.mgmagazine.com</span>
+      <span>02 / 02</span>
+    </div>
+  </section>
+
+</div>
+</body>
+</html>
